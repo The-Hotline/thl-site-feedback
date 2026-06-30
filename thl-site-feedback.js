@@ -2,8 +2,8 @@
 // National Domestic Violence Hotline Site Feedback Widget
 // author: Chad Cleveland | National Domestic Violence Hotline | TheHotline.org
 
-// Last Modified: '2026-06-29 15:09';
-const thl_siteFeedbackLastModified = '2026-06-29 15:09';
+// Last Modified: '2026-06-30 12:01';
+const thl_siteFeedbackLastModified = '2026-06-30 12:01';
 
 /*
 Copyright (c) Effective as of timestamp above. National Domestic Violence Hotline.
@@ -22,21 +22,19 @@ const THUMB_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"> 
 
 thl_initFeedback();
 function thl_initFeedback() {
-
     // --- Params ---
-    const scriptTag = [...document.querySelectorAll('script[src]')]
-        .find(s => s.src.includes('thl-feedback.js'));
+    const scriptTag = [...document.querySelectorAll("script[src]")].find((s) => s.src.includes("thl-feedback.js"));
     const params = scriptTag ? new URL(scriptTag.src).searchParams : new URLSearchParams();
 
     const hexRe = /^[0-9a-fA-F]{6}$/;
     function resolveColor(paramName, fallback) {
         const val = params.get(paramName);
-        return (val && hexRe.test(val)) ? `#${val}` : fallback;
+        return val && hexRe.test(val) ? `#${val}` : fallback;
     }
 
-    const bgColor      = resolveColor('bg-color',        '#e2bdfc');
-    const btnColor     = resolveColor('btn-color',       '#a93e92');
-    const btnHoverColor = resolveColor('btn-hover-color', '#e498f5');
+    const bgColor = resolveColor("bg-color", "#e2bdfc");
+    const btnColor = resolveColor("btn-color", "#a93e92");
+    const btnHoverColor = resolveColor("btn-hover-color", "#e498f5");
 
     // --- Base styles ---
     const style = document.createElement("style");
@@ -171,14 +169,13 @@ function thl_initFeedback() {
             btn.addEventListener("click", function () {
                 const value = btn === yesEle ? "yes" : "no";
 
-                // Fire GA4 event
-                if (typeof gtag === "function") {
-                    gtag("event", eventName, {
-                        feedback_value: value,
-                        page_path: window.location.pathname
-                    });
-                }
-
+                // Fire GTM event
+                dataLayer.push({
+                    event: eventName,
+                    feedback_value: value,
+                    page_path: window.location.pathname
+                });
+                
                 // Visual confirmation — disable both buttons, mark selection
                 yesEle.remove();
                 noEle.remove();

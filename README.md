@@ -1,14 +1,14 @@
 # thl-site-feedback
 
-A lightweight, dependency-free site feedback widget from the [National Domestic Violence Hotline](https://www.thehotline.org). Renders a thumbs up/down feedback bar above your site's footer and fires GA4 events on interaction.
+A lightweight, dependency-free site feedback widget from the [National Domestic Violence Hotline](https://www.thehotline.org). Renders a thumbs up/down feedback bar above your site's footer and fires GTM events on interaction.
 
 ---
 
 ## Requirements
 
 - A `<footer>` element on the page — the widget inserts itself immediately before it
-- Google Analytics 4 with `gtag` available on the page — events will silently not work if it isn't
-  - Google Analytics config instructions can be found: https://thehotline.atlassian.net/wiki/external/MGViOWM1YjkyNDg5NDUyZTllMmZmY2M3OGQ2NzI4ODY
+- Google Tag Manager available on the page — events will silently not work if it isn't
+  - GTM config instructions can be found: https://thehotline.atlassian.net/wiki/external/MGViOWM1YjkyNDg5NDUyZTllMmZmY2M3OGQ2NzI4ODY
 
 ---
 
@@ -49,7 +49,7 @@ Invalid or absent values fall back to the defaults automatically.
 - On any page, two feedback prompts are shown: one for the specific page, one for the overall visit
 - On the root path (`/`), the page-specific prompt is hidden — only the overall prompt is shown
 - After a thumb is clicked, the buttons are removed and a thank-you message replaces the prompt label
-- GA4 events fired: `page_feedback` and `overall_feedback`, each with a `feedback_value` of `yes` or `no` and a `page_path`
+- GTM events fired: `page_feedback` and `overall_feedback`, each with a `feedback_value` of `yes` or `no` and a `page_path`
 
 ---
 
