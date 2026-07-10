@@ -2,8 +2,8 @@
 // National Domestic Violence Hotline Site Feedback Widget
 // author: Chad Cleveland | National Domestic Violence Hotline | TheHotline.org
 
-// Last Modified: '2026-07-02 12:35';
-const thl_siteFeedbackLastModified = '2026-07-02 12:35';
+// Last Modified: '2026-07-10 12:17';
+const thl_siteFeedbackLastModified = '2026-07-10 12:17';
 
 /*
 Copyright (c) Effective as of timestamp above. National Domestic Violence Hotline.
@@ -29,9 +29,6 @@ const THL_SITE_FEEDBACK_OVERALL_FEEDBACK_LABEL_ES = "En general, ¿encontró lo 
 
 thl_initFeedback();
 function thl_initFeedback() {
-    // --- Params ---
-    const scriptTag = [...document.querySelectorAll("script[src]")].find((s) => s.src.includes("thl-site-feedback.js"));
-    const params = scriptTag ? new URL(scriptTag.src).searchParams : new URLSearchParams();
     let thl_siteFeedbackLang = "en";
     if(location.hostname.includes("espanol.") || location.href.includes("lang=es")) {
         thl_siteFeedbackLang = "es";
@@ -39,6 +36,9 @@ function thl_initFeedback() {
     let thankYouMessage = thl_siteFeedbackLang === "es" ? THL_SITE_FEEDBACK_THANK_YOU_MESSAGE_ES : THL_SITE_FEEDBACK_THANK_YOU_MESSAGE_EN;
     let pageFeedbackLabel = thl_siteFeedbackLang === "es" ? THL_SITE_FEEDBACK_PAGE_FEEDBACK_LABEL_ES : THL_SITE_FEEDBACK_PAGE_FEEDBACK_LABEL_EN;
     let overallFeedbackLabel = thl_siteFeedbackLang === "es" ? THL_SITE_FEEDBACK_OVERALL_FEEDBACK_LABEL_ES : THL_SITE_FEEDBACK_OVERALL_FEEDBACK_LABEL_EN;
+
+    const scriptTag = [...document.querySelectorAll("script[src]")].find((s) => s.src.includes("thl-site-feedback.js"));
+    const params = scriptTag ? new URL(scriptTag.src).searchParams : new URLSearchParams();
     const hexRe = /^[0-9a-fA-F]{6}$/;
     function resolveColor(paramName, fallback) {
         const val = params.get(paramName);

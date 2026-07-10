@@ -17,14 +17,14 @@ A lightweight, dependency-free site feedback widget from the [National Domestic 
 Add the script tag to your page, just before `</body>` or in your page's footer template:
 
 ```html
-<script type="module" src="https://lib.thehotline.us/thl-site-feedback/thl-site-feedback.js"></script>
+<script type="module" src="https://cdn.thehotline.us/thl-site-feedback/thl-site-feedback.js"></script>
 ```
 
 That's it. No initialization, no configuration required.
 
 ---
 
-## Color Parameters
+## Optional Color Parameters
 
 Three optional query parameters let you match the widget to your site's color scheme. All values are **6-digit hex codes without the `#`**.
 
@@ -39,7 +39,7 @@ Invalid or absent values fall back to the defaults automatically.
 **Example:**
 
 ```html
-<script type="module" src="https://lib.thehotline.us/thl-site-feedback/thl-site-feedback.js?bg-color=cce5ff&btn-color=003f7f&btn-hover-color=99caff"></script>
+<script type="module" src="https://cdn.thehotline.us/thl-site-feedback/thl-site-feedback.js?bg-color=cce5ff&btn-color=003f7f&btn-hover-color=99caff"></script>
 ```
 
 ---
