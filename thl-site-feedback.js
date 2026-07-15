@@ -2,8 +2,8 @@
 // National Domestic Violence Hotline Site Feedback Widget
 // author: Chad Cleveland | National Domestic Violence Hotline | TheHotline.org
 
-// Last Modified: '2026-07-10 12:17';
-const thl_siteFeedbackLastModified = '2026-07-10 12:17';
+// Last Modified: '2026-07-15 09:47';
+const thl_siteFeedbackLastModified = '2026-07-15 09:47';
 
 /*
 Copyright (c) Effective as of timestamp above. National Domestic Violence Hotline.
@@ -48,6 +48,8 @@ function thl_initFeedback() {
     const bgColor = resolveColor("bg-color", "#e2bdfc");
     const btnColor = resolveColor("btn-color", "#a93e92");
     const btnHoverColor = resolveColor("btn-hover-color", "#e498f5");
+
+    const svgCss = extractPathDCss(THL_SITE_FEEDBACK_THUMB_SVG, "#thl-site-feedback");
 
     // --- Base styles ---
     const style = document.createElement("style");
@@ -102,7 +104,7 @@ function thl_initFeedback() {
         .thl-thumbs-down {
             transform: scale(1, -1);
         }
-    `;
+    ` + svgCss;
     document.head.appendChild(style);
 
     // --- Color overrides ---
@@ -207,4 +209,16 @@ function thl_initFeedback() {
     if (footerEle) {
         footerEle.parentNode.insertBefore(feedbackEle, footerEle);
     }
+}
+
+function extractPathDCss(svgString, containerSelector) {
+    const doc = new DOMParser().parseFromString(svgString, "image/svg+xml");
+    const paths = doc.querySelectorAll("path[class][d]");
+    let css = "";
+    paths.forEach(path => {
+        const classSelector = [...path.classList].map(c => `.${c}`).join("");
+        const d = path.getAttribute("d");
+        css += `${containerSelector} ${classSelector} { d: path("${d}"); }\n`;
+    });
+    return css;
 }
