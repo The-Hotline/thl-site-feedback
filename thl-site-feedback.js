@@ -2,8 +2,8 @@
 // National Domestic Violence Hotline Site Feedback Widget
 // author: Chad Cleveland | National Domestic Violence Hotline | TheHotline.org
 
-// Last Modified: '2026-07-15 09:47';
-const thl_siteFeedbackLastModified = '2026-07-15 09:47';
+// Last Modified: '2026-07-31 10:16';
+const thl_siteFeedbackLastModified = '2026-07-31 10:16';
 
 /*
 Copyright (c) Effective as of timestamp above. National Domestic Violence Hotline.
@@ -205,7 +205,8 @@ function thl_initFeedback() {
 
     // --- Inject ---
 
-    const footerEle = document.querySelector("footer");
+    const footerEleCount = document.querySelectorAll("footer").length;
+    const footerEle = document.querySelectorAll("footer")[footerEleCount - 1];
     if (footerEle) {
         footerEle.parentNode.insertBefore(feedbackEle, footerEle);
     }
